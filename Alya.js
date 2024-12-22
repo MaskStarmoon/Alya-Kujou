@@ -37,11 +37,17 @@ console.log(logo.login + 'Mulai menerima pesan dari pengguna.');
 
                 try {
                 const files = fs.readdirSync(folder);
+		const adminGC = await api.getThreadInfo(event.threadID);
+		const isGroupAdmin = adminGC.adminIDs.some(admin => admin.id === event.senderID) ? 1 : 0;
+		const isGlobalAdmin = admin.includes(event.senderID) ? 2 : 0;
+		const isUser = isGlobalAdmin || isGroupAdmin || 0;
 
                     for (const file of files) {
              if (file.endsWith('.js')) {
                  const anime = path.join(folder, file);
                  const { config, Alya } = require(anime);
+		     
+		if (config && config.peran === 2 && isUser !== 2) return api.sendMessage('❌ Anda tidak memiliki izin untuk menggunakan perintah ini.', event.threadID, event.messageID);
 
               if (config && config.nama === cmd && typeof Alya === 'function') {
                  console.log(logo.cmds + `Berhasil menjalankan perintah ${config.nama}.`);
@@ -49,7 +55,7 @@ console.log(logo.login + 'Mulai menerima pesan dari pengguna.');
                  await Alya(api, event, args);
                  return;
                       } else {
-		     api.sendMessage('Pelan pelan sayank!', event.threadID, event.messageID);
+		     api.sendMessage('⚠️ Pelan-pelan ya, jangan spam perintah!', event.threadID, event.messageID);
 	              } 
                      }
                     }
