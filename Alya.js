@@ -6,7 +6,7 @@
 	const fs = require("fs");
 	const path = require("path");
 	const akun = fs.readFileSync('akun.txt', 'utf8');
-	const { awalan, nama } = require('./config.json');
+	const { awalan, nama, admin } = require('./config.json');
         const { kuldown } = require('./hady-zen/kuldown');
 
 console.log(warna.biru + `▄▀█ █░ █▄█ ▄▀█  █▄▀ █░█ ░█ █▀█ █░█\n█▀█ █▄ ░█░ █▀█  █░█ █▄█ ▄█ █▄█ █▄█\n`);
@@ -18,6 +18,7 @@ console.log(logo.error + 'Harap masukkan cookie terlebih dahulu.');
 login({appState: JSON.parse(fs.readFileSync('akun.txt', 'utf8'))}, (err, api) => {
 		if(err) return console.log(logo.error + `terjadi kesalahan saat login: ${err}`);
 	api.setOptions({listenEvents: true});
+	console.log('ADMIN LIST ID :' + `${admin}`);
 console.log(logo.login + 'Mulai menerima pesan dari pengguna.');
 	  
 		api.listenMqtt((err, event) => {
