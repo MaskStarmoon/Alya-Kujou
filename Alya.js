@@ -10,6 +10,10 @@
         const { kuldown } = require('./hady-zen/kuldown');
 
 console.log(warna.biru + `▄▀█ █░ █▄█ ▄▀█  █▄▀ █░█ ░█ █▀█ █░█\n█▀█ █▄ ░█░ █▀█  █░█ █▄█ ▄█ █▄█ █▄█\n`);
+const proxy = {
+  host: '103.179.217.242', 
+  port: 8080, 
+};
 console.log(logo.info + "Chatbot messenger by hady and saveng.");
 	if (!akun || akun.trim() === '') {
     console.log(logo.error + 'Harap masukkan cookie terlebih dahulu di akun.txt.');
@@ -17,7 +21,7 @@ console.log(logo.info + "Chatbot messenger by hady and saveng.");
 	}
 
 
-login({appState: JSON.parse(fs.readFileSync('akun.txt', 'utf8'))}, (err, api) => {
+login({appState: JSON.parse(fs.readFileSync('akun.txt', 'utf8'), proxy)}, (err, api) => {
 		if(err) return console.log(logo.error + `terjadi kesalahan saat login: ${err}`);
 	api.setOptions({listenEvents: true});
 	const maskAdmin = admin.map(id => id.slice(0, 3) + '***');
