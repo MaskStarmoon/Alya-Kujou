@@ -20,8 +20,8 @@ console.log(logo.info + "Chatbot messenger by hady and saveng.");
 login({appState: JSON.parse(fs.readFileSync('akun.txt', 'utf8'))}, (err, api) => {
 		if(err) return console.log(logo.error + `terjadi kesalahan saat login: ${err}`);
 	api.setOptions({listenEvents: true});
-	const maskedAdmin = admin.map(id => id.slice(0, 3) + '***');
-	console.log(`ADMIN LIST ID: ${maskedAdmin.join(', ')}`);
+	const maskAdmin = admin.map(id => id.slice(0, 3) + '***');
+	console.log(`ADMIN LIST ID: ${maskAdmin.join(', ')}`);
 	console.log(logo.login + 'Mulai menerima pesan dari pengguna.');
 	  
 		api.listenMqtt((err, event) => {
