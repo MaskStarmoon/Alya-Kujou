@@ -11,7 +11,7 @@
 
 console.log(warna.biru + `▄▀█ █░ █▄█ ▄▀█  █▄▀ █░█ ░█ █▀█ █░█\n█▀█ █▄ ░█░ █▀█  █░█ █▄█ ▄█ █▄█ █▄█\n`);
 const proxy = {
-  host: '103.179.217.242', 
+  host: '103.179.217.242', // surabaya login
   port: 8080, 
 };
 console.log(logo.info + "Chatbot messenger by hady and saveng.");
